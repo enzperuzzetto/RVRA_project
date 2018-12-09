@@ -1,38 +1,51 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using ArucoUnity.Objects.Trackers;
 
 public class displayScene : MonoBehaviour {
 
-	private GameObject marker0;
+    public ArucoObjectsTracker tracker;
+    private GameObject marker0;
 	private GameObject marker1;
 	private GameObject background;
 
-	// Use this for initialization
-	void Start () {
+    private Vector3 startingScale;
+
+    // Use this for initialization
+    void Start ()
+    {
 		marker0 = GameObject.Find("Marker0");
 		marker1 = GameObject.Find("Marker1");
-		background = GameObject.Find("background");
+        background = GameObject.Find("background");
+        startingScale = background.transform.localScale;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+
+        if (!isVisible(marker0) || !isVisible(marker1))
+            background.SetActive(false);
+        else
+            background.SetActive(true);
+
 		float dist = distance(marker0, marker1);
 		setPosition(background, marker0, marker1);
-		//setScale(background, marker0, marker1);
-		print(dist);
+        //setScale(background, marker0, marker1);
+        background.transform.localScale = startingScale * dist;
+		//print(dist);
 		
 	}
 
-	void setPosition( GameObject toset, GameObject obj1, GameObject obj2){
+	void setPosition( GameObject toset, GameObject obj1, GameObject obj2)
+    {
 		float x = (obj1.transform.position.x + obj2.transform.position.x)/2.0f;
 		float y = (obj1.transform.position.y + obj2.transform.position.y)/2.0f;
 		float z = (obj1.transform.position.z + obj2.transform.position.z)/2.0f;
 		toset.transform.position = new Vector3(x, y, z);
 	}
 
-	void setScale( GameObject toset, GameObject obj1, GameObject obj2){
+	void setScale( GameObject toset, GameObject obj1, GameObject obj2)
+    {
 		float x = (obj1.transform.position.x - obj2.transform.position.x)/2.0f;
 		float y = (obj1.transform.position.y - obj2.transform.position.y)/2.0f;
 		float z = (obj1.transform.position.z - obj2.transform.position.z)/2.0f;
@@ -42,10 +55,22 @@ public class displayScene : MonoBehaviour {
 		toset.transform.localScale = new Vector3(x, y, z);
 	}
 
-	float distance( GameObject obj1, GameObject obj2){
+    /*
+     * Compute distance between two gameobject
+     */
+	float distance( GameObject obj1, GameObject obj2)
+    {
 		float x = obj1.transform.position.x - obj2.transform.position.x;
 		float y = obj1.transform.position.y - obj2.transform.position.y;
 		float z = obj1.transform.position.z - obj2.transform.position.z;
 		return Mathf.Sqrt ((x * x) + (y * y) + (z * z));
 	}
+
+    /*
+     * Check if gameObject is in camera fustrum
+     */
+    bool isVisible(GameObject obj)
+    {
+        return true;
+    }
 }
