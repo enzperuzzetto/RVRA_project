@@ -8,6 +8,8 @@ public class displayPlanet : MonoBehaviour
 	public List<GameObject> planets;
 
     private float transferCooldown;
+	private const float COOLDOWN_VALUE = 2.0f;
+	private const float TRANSFER_DIST_MIN = 0.1f;
 
 
     // Use this for initialization
@@ -20,7 +22,7 @@ public class displayPlanet : MonoBehaviour
 			}
 		}
 
-		transferCooldown = 2.0f;
+		transferCooldown = COOLDOWN_VALUE;
     }
 
     // Update is called once per frame
@@ -36,11 +38,11 @@ public class displayPlanet : MonoBehaviour
 
 			else {
 				for (int j = 0; j < markers.Count; j++) {
-					if (planets[j] != null && transferCooldown == .0f && distance(markers[i], markers[j]) < 0.1f) {
+					if (planets[j] != null && transferCooldown == .0f && distance(markers[i], markers[j]) < TRANSFER_DIST_MIN) {
 						planets[i] = planets[j];
 						planets[j] = null;
 						setPosition(planets[i], markers[i]);
-						transferCooldown = 2.0f;
+						transferCooldown = COOLDOWN_VALUE;
 						break;
 					}
 				}
