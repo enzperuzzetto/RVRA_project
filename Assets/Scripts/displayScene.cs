@@ -30,11 +30,18 @@ public class displayScene : MonoBehaviour {
         }
 
 		float dist = distance(marker0, marker1);
-        //Vector3 rotation = mean_rotation(marker0, marker1);
+        
+        Vector3 relative_pos = marker0.transform.position - marker1.transform.position;
+        //background.transform.rotation = Quaternion.LookRotation(relative_pos, Vector3.left);
+        //background.transform.rotation = Quaternion.LookRotation(Vector3.up, relative_pos);
+        background.transform.rotation = marker0.transform.rotation;
+
+
         passedTime += Time.deltaTime;
         if (passedTime > UPDATE_TIME){
 		    setPosition(background, marker0, marker1);
             background.transform.localScale = new Vector3(dist * 0.1f, dist * 0.1f, dist * 0.1f);
+            passedTime = 0.0f;
         }
 	}
 
@@ -56,11 +63,5 @@ public class displayScene : MonoBehaviour {
 		float z = obj1.transform.position.z - obj2.transform.position.z;
 		return Mathf.Sqrt ((x * x) + (y * y) + (z * z));
 	}
-
-    // Vector3 mean_rotation(GameObject obj1, GameObject obj2){
-    //     Vector3 mean = new Vector3(obj1.transform.rotation)
-    //     return 
-    // }
-  
 
 }
