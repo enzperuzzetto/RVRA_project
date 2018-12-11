@@ -10,20 +10,44 @@ public class displayScene : MonoBehaviour {
 
     private Vector3 startingScale;
 
+    private Vector3 prevPos0;
+    private Vector3 currPos0;
+    private Vector3 prevPos1;
+    private Vector3 currPos1;
+    private float passedTime;
+
     // Use this for initialization
     void Start ()
     {
         background = GameObject.Find("background");
         startingScale = background.transform.localScale;
+
+        prevPos0 = Vector3.one;
+        currPos0 = Vector3.one;
+        prevPos1 = Vector3.one;
+        currPos1 = Vector3.one;
+        passedTime = Time.deltaTime; 
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        if (!isVisible(marker0) || !isVisible(marker1))
-            background.SetActive(false);
-        else
+        currPos0 = marker0.transform.position;
+        currPos1 = marker1.transform.position;
+
+        if (!isVisible(prevPos0, currPos0) || !isVisible(prevPos1, currPos1)){
+            passedTime += Time.deltaTime;
+            if (passedTime > 0.5){
+                background.SetActive(false);    
+            }
+        }
+        else{
             background.SetActive(true);
+            passedTime = 0;
+        }
+        prevPos0 = currPos0;
+        prevPos1 = currPos1;
+
 
 		float dist = distance(marker0, marker1);
 		setPosition(background, marker0, marker1);
@@ -51,10 +75,10 @@ public class displayScene : MonoBehaviour {
 	}
 
     /*
-     * Check if gameObject is in camera fustrum
+     * Check if gameObject is changing position
      */
-    bool isVisible(GameObject obj)
+    bool isVisible(Vector3 pos0, Vector3 pos1)
     {
-        return true;
+        return (pos0!=pos1);
     }
 }
