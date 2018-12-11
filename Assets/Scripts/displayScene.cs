@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using ArucoUnity.Objects.Trackers;
 
 public class displayScene : MonoBehaviour {
 
-    public ArucoObjectsTracker tracker;
     public GameObject marker0;
 	public GameObject marker1;
 	private GameObject background;
@@ -36,7 +34,7 @@ public class displayScene : MonoBehaviour {
         currPos1 = marker1.transform.position;
 
         passedTime = isVisible(passedTime, background, currPos0, prevPos0, currPos1, prevPos1);
-        
+
         prevPos0 = currPos0;
         prevPos1 = currPos1;
 
