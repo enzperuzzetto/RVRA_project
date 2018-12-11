@@ -10,18 +10,19 @@ public class displayPlanet : MonoBehaviour
     private float transferCooldown;
 	private const float COOLDOWN_VALUE = 2.0f;
 	private const float TRANSFER_DIST_MIN = 0.1f;
+	private List<float> passedTime = new List<float>();
 
 
     // Use this for initialization
     void Start()
 	{
 		for (int i = 0; i < markers.Count; i++) {
+			passedTime.Add(.0f);
 			if (planets[i] != null) {
 				markers[i].transform.position = new Vector3(3.0f * i, 3.0f * i, 3.0f * i);
 				planets[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 			}
 		}
-
 		transferCooldown = COOLDOWN_VALUE;
     }
 
@@ -33,9 +34,8 @@ public class displayPlanet : MonoBehaviour
 		for (int i = 0; i < markers.Count; i++) {
 			if (planets[i] != null) {
 				planets [i].SetActive (true);
-				setPosition (planets [i], markers [i]);
+				passedTime[i] = updatePosition(passedTime[i], planets[i], markers[i]);			
 			}
-
 			else {
 				for (int j = 0; j < markers.Count; j++) {
 					if (planets[j] != null && transferCooldown == .0f && distance(markers[i], markers[j]) < TRANSFER_DIST_MIN) {
@@ -68,11 +68,17 @@ public class displayPlanet : MonoBehaviour
 		return Mathf.Sqrt ((x * x) + (y * y) + (z * z));
 	}
     
-    /*
-     * Check if gameObject is in camera fustrum
-     */
-    bool isVisible(GameObject obj)
+	/*
+	 *	Update Position of obj according to obj2 if it has not been update 
+	 *  in the last half second 
+	 */
+    float updatePosition(float passedTime, GameObject obj, GameObject obj2)
     {
-        return true;
+        passedTime += Time.deltaTime;
+        if (passedTime > 0.5){
+        	setPosition(obj, obj2);   
+		}
+        return passedTime;
     }
+
 }
