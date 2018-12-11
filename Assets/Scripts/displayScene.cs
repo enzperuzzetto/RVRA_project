@@ -4,8 +4,8 @@ using ArucoUnity.Objects.Trackers;
 public class displayScene : MonoBehaviour {
 
     public ArucoObjectsTracker tracker;
-    private GameObject marker0;
-	private GameObject marker1;
+    public GameObject marker0;
+	public GameObject marker1;
 	private GameObject background;
 
     private Vector3 startingScale;
@@ -13,8 +13,6 @@ public class displayScene : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-		marker0 = GameObject.Find("Marker0");
-		marker1 = GameObject.Find("Marker1");
         background = GameObject.Find("background");
         startingScale = background.transform.localScale;
 	}
@@ -30,9 +28,7 @@ public class displayScene : MonoBehaviour {
 
 		float dist = distance(marker0, marker1);
 		setPosition(background, marker0, marker1);
-        //setScale(background, marker0, marker1);
-        background.transform.localScale = startingScale * dist;
-		//print(dist);
+        background.transform.localScale = new Vector3(dist * 0.1f, dist * 0.1f, dist * 0.1f);
 		
 	}
 
@@ -42,17 +38,6 @@ public class displayScene : MonoBehaviour {
 		float y = (obj1.transform.position.y + obj2.transform.position.y)/2.0f;
 		float z = (obj1.transform.position.z + obj2.transform.position.z)/2.0f;
 		toset.transform.position = new Vector3(x, y, z);
-	}
-
-	void setScale( GameObject toset, GameObject obj1, GameObject obj2)
-    {
-		float x = (obj1.transform.position.x - obj2.transform.position.x)/2.0f;
-		float y = (obj1.transform.position.y - obj2.transform.position.y)/2.0f;
-		float z = (obj1.transform.position.z - obj2.transform.position.z)/2.0f;
-		x = Mathf.Sqrt(x * x);
-		y = Mathf.Sqrt(y * y);
-		z = Mathf.Sqrt(z * z);
-		toset.transform.localScale = new Vector3(x, y, z);
 	}
 
     /*
