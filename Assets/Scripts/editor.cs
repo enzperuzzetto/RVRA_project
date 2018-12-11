@@ -18,7 +18,7 @@ public class editor : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		planets = new List<string>(9){"Earth","Sun","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune"};
-		float passedTime = 0;
+		passedTime = 0;
 	}
 	
 	// Update is called once per frame

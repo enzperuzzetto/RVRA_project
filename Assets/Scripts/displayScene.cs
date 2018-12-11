@@ -14,7 +14,7 @@ public class displayScene : MonoBehaviour {
     void Start ()
     {
         background = GameObject.Find("background");
-        float passedTime = 0;
+        passedTime = 0;
          
 	}
 	
