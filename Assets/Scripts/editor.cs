@@ -15,9 +15,6 @@ public class editor : MonoBehaviour {
 
     private const float UPDATE_TIME = 1.0f;
 
-	//private List<string> edit = new List<string>(){"Scale", "Rotate", "Step"};
-
-
     // Use this for initialization
     void Start () {
 		planets = new List<string>(9){"Earth","Sun","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune"};
@@ -57,43 +54,6 @@ public class editor : MonoBehaviour {
 		}
 	}
 
-	// private bool eless(Vector3 v1, Vector3 v2, double inter){
-	// 	if(v1.x <= v2.x && v1.y - inter<= v2.y)
-	// 		return true;
-		
-	// 	return false;
-	// }
-
-	// private bool egreater(Vector3 v1, Vector3 v2, double inter){
-	// 	if(v1.x >= v2.x && v1.y+inter >= v2.y)
-	// 		return true;
-		
-	// 	return false;
-	// }
-
-	// /*
-	//  * Considering that plus is at right and minus is at left
-	//  */
-	// private bool isBetween(GameObject obj){
-		
-	// 	Vector3 posObj  = obj.transform.position;
-	// 	Vector3 posPlus = plus.transform.position;
-	// 	Vector3 posMinus = minus.transform.position;
-
-	// 	if(eless(posMinus, posObj, 0.1)  && egreater(posPlus, posObj, 0.1))
-	// 		return true;
-
-	// 	return false;
-	// }
-
-	// private string whichMethod(){
-	// 	for(int i=0; i<markers.Count; i++){
-	// 		if(isBetween(markers[i]))
-	// 			return edit[i];
-	// 	}
-	// 	return "null";
-	// }
-
 	float distance( GameObject obj1, GameObject obj2)
     {
 		float x = obj1.transform.position.x - obj2.transform.position.x;
@@ -101,6 +61,5 @@ public class editor : MonoBehaviour {
 		//float z = obj1.transform.position.z - obj2.transform.position.z;
 		return Mathf.Sqrt ((x * x));// + (y * y) + (z * z));
 	}
-
 
 }
