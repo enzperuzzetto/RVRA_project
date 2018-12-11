@@ -19,8 +19,7 @@ public class displayScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()
-    {
-
+	{
         if (!isVisible(marker0) || !isVisible(marker1))
             background.SetActive(false);
         else
