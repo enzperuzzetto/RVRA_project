@@ -35,19 +35,10 @@ public class displayScene : MonoBehaviour {
         currPos0 = marker0.transform.position;
         currPos1 = marker1.transform.position;
 
-        if (!isVisible(prevPos0, currPos0) || !isVisible(prevPos1, currPos1)){
-            passedTime += Time.deltaTime;
-            if (passedTime > 0.5){
-                background.SetActive(false);    
-            }
-        }
-        else{
-            background.SetActive(true);
-            passedTime = 0;
-        }
+        passedTime = isVisible(passedTime, background, currPos0, prevPos0, currPos1, prevPos1);
+        
         prevPos0 = currPos0;
         prevPos1 = currPos1;
-
 
 		float dist = distance(marker0, marker1);
 		setPosition(background, marker0, marker1);
@@ -77,8 +68,28 @@ public class displayScene : MonoBehaviour {
     /*
      * Check if gameObject is changing position
      */
-    bool isVisible(Vector3 pos0, Vector3 pos1)
-    {
+    bool isMoving(Vector3 pos0, Vector3 pos1){
         return (pos0!=pos1);
+
     }
+
+    /*
+     * Display the GameObject if his position has changed in the last half second
+     */
+    float isVisible(float passedTime, GameObject obj, Vector3 pos0, Vector3 prev0, Vector3 pos1, Vector3 prev1)
+    {
+        if (!isMoving(prev0, pos0) || !isMoving(prev1, pos1)){
+            passedTime += Time.deltaTime;
+            if (passedTime > 0.5){
+                obj.SetActive(false);    
+            }
+        }
+        else{
+            obj.SetActive(true);
+            passedTime = 0;
+        }
+        return passedTime;
+    }
+
+
 }
