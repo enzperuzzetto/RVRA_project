@@ -5,11 +5,15 @@ The goal of our project is to implement interactions on and between virtual obje
 We make use of this system to represent a layout of the Solar System using markers to represent the background, the planets as well as satellites. We also provide ways to interact and transform the displayed objects. This could be used for educative purposes in order to teach about basic astronomy.
 
 ## Authors
+
 Brisset Remi
+
 Pepin Teiki
+
 Peruzzetto Enzo
 
 ## Usage
+
 This is a Unity project which can be imported as is and includes all of its dependencies.
 This project heavily uses [the existing work](https://github.com/NormandErwan/ArucoUnity) by Erwan Normand which implements functions to create and detect markers within Unity using OpenCV.
 
