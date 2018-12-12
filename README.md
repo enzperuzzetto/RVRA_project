@@ -6,11 +6,7 @@ We make use of this system to represent a layout of the Solar System using marke
 
 ## Authors
 
-Brisset Remi
-
-Pepin Teiki
-
-Peruzzetto Enzo
+Brisset Remi, Pepin Teiki & Peruzzetto Enzo
 
 ## Usage
 
