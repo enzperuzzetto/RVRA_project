@@ -11,7 +11,7 @@ Brisset Remi, Pepin Teiki & Peruzzetto Enzo
 ## Usage
 
 This is a Unity project which can be imported as is and includes all of its dependencies.
-This project heavily uses [the existing work](https://github.com/NormandErwan/ArucoUnity) by Erwan Normand which implements functions to create and detect markers within Unity using OpenCV.
+This project heavily uses [the existing work](https://github.com/NormandErwan/ArucoUnity) by Erwan Normand which implements functions to create and detect Aruco markers within Unity using OpenCV.
 
 You will need printed Aruco markers to do anything within the program. The ones used by default are the markers whose id are 0 to 12 and 21 to 23. The markers used can be changed within Unity in order to use different Aruco markers if needed.
 
